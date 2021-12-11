@@ -1,0 +1,23 @@
+
+.body{
+	background-image: images/chicken.jpg;
+}
+.icon img{
+	width:150px;
+	padding-bottom: 20px;
+	margin: auto;
+	display:block;
+	cursor: pointer;
+}
+.upload{
+	text-align: center;
+	cursor: pointer;
+}
+
+.registration{
+	width: 50%;
+	height: 500px;
+	margin: auto;
+	color: Black;
+	float: left;
+}

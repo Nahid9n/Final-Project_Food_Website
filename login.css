@@ -1,0 +1,28 @@
+form{
+  	width: 500;
+    display: block;
+    font-family: tahoma;
+    font-size: 20px;
+  	background: white;
+    margin: auto;
+    padding-top: 30px;
+  }
+  form input{
+    width: 200px;
+    height: 40px;
+  }
+  form input input{
+    width: 100px;
+    height: 40px;
+  }
+ div .checkbox{
+    width: 15px;
+    padding-bottom: 0px;
+    float: left;
+    position: relative;
+  }
+  div article{
+    width: 25px;
+    float: left;
+    font-size: 20px;
+  }
