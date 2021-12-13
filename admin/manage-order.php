@@ -6,43 +6,127 @@
 				<!-- button to add admin section Starts -->
 			
 
+			<br><br><br>
+
+			<?php 
+				if(isset($_SESSION['update']))
+					{
+					echo $_SESSION['update'];
+					unset($_SESSION['update']);
+				
+				}
+
+			?>
 			<br><br>
 
 				<table class="tbl-full">
 					<tr>
 						<th>S.N</th>
-						<th>Full Name</th>
-						<th>Username</th>
+						<th>Food</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Total</th>
+						<th>Order date</th>
+						<th>Status</th>
+						<th>Customer Name</th>
+						<th>Contact</th>
+						<th>Email</th>
+						<th>Address</th>
 						<th>Actions</th>
 					</tr>
 
-					<tr>
-						<td>1.</td>
-						<td>FOOD POINT</td>
-						<td>foodpoint</td>
-						<td>
-							<a href="#" class="btn-secondary">update Order </a>
-							<a href="#" class="btn-danger">Delete Order </a>
-						</td>
-					</tr>
-					<tr>
-						<td>2.</td>
-						<td>FOOD POINT</td>
-						<td>foodpoint</td>
-						<td>
-							<a href="#" class="btn-secondary">update Order </a>
-							<a href="#" class="btn-danger">Delete Order </a>
-						</td>
-					</tr>
-					<tr>
-						<td>3.</td>
-						<td>FOOD POINT</td>
-						<td>foodpoint</td>
-						<td>
-							<a href="#" class="btn-secondary">update Order </a>
-							<a href="#" class="btn-danger">Delete Order </a>
-						</td>
-					</tr>
+					<?php 
+
+						//Get all the orders from database
+						$sql = "SELECT * FROM tbl_order ORDER BY id DESC"; //descending order display the latest order First
+						//Execute Query
+						$res = mysqli_Query($conn, $sql);
+						//count the rows
+						$count = mysqli_num_rows($res);
+
+						$sn=1;
+
+						if($count>0)
+						{
+							//order available
+							while($row=mysqli_fetch_assoc($res))
+							{
+								//get all the order Details
+								$id = $row['id'];
+								$food = $row['food'];
+								$price = $row['price'];
+								$qty = $row['qty'];
+								$total = $row['total'];
+								$order_date = $row['order_date'];
+								$status = $row['status'];
+								$customer_name = $row['customer_name'];
+								$customer_contact = $row['customer_contact'];
+								$customer_email = $row['customer_email'];
+								$customer_address = $row['customer_address'];
+
+								?>
+
+								<tr>
+									<td><?php echo $sn++;?></td>
+									<td><?php echo $food;?></td>
+									<td>$<?php echo $price;?></td>
+									<td><?php echo $qty;?></td>
+									<td><?php echo $total;?></td>
+									<td><?php echo $order_date;?></td>
+
+									<td>
+										<?php 
+											if($status=="Ordered")
+											{
+												echo "<label>$status</label>";
+											}
+											elseif ($status=="On Delivery") 
+											{
+												echo "<label style='color:Orange;'>$status</label>";
+											}
+											elseif ($status=="Delivered") 
+											{
+												echo "<label style='color:Green;'>$status</label>";
+											}
+											elseif ($status=="Cancelled") 
+											{
+												echo "<label style='color:red;'>$status</label>";
+											}
+
+
+
+										?>
+										
+
+
+
+									</td>
+									<td><?php echo $customer_name;?></td>
+									<td><?php echo $customer_contact;?></td>
+									<td><?php echo $customer_email;?></td>
+									<td><?php echo $customer_address;?></td>
+									
+									<td>
+										<a href="<?php echo SITEURL;?>admin/update-order.php?id=<?php echo $id; ?>" class="btn-secondary">update Order </a>
+									</td>
+								</tr>
+
+
+								<?php
+							}
+						}
+						else
+						{
+							//Order not available
+							echo "<tr><td colspan='12' class='error'>Order not Available</td></tr>";
+						}
+
+
+
+					?>
+
+					
+					
 				</table>
 		</div>
 	</div>
