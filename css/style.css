@@ -85,6 +85,17 @@ fieldset{
     padding: 3%;
     border-radius: 5px;
 }
+.error{
+    font-size: 30px;
+    padding: 2%;
+    color: red;
+}
+.success{
+    font-size: 30px;
+    padding: 2%;
+    color: green;
+}
+
 
 
 /* CSSS for navbar section */
